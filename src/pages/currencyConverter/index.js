@@ -23,7 +23,8 @@ function currencyConverter(props) {
     const [date, setDate] = useState(new Date());
     const [isLoading, setLoading] = useState(false);
     const [reslultContaierCls, setReslultContaierCls] = useState("hidden");
-
+    const [subscribed, setSubscribed] = useState(false);
+    
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
@@ -45,7 +46,9 @@ function currencyConverter(props) {
     const [selectedCurrencyTo, setSelectedCurrencyTo] = useState(cuntriesOptions[48]);
 
     useEffect(() => {
-        //handleConvert();
+        if( subscribed ){
+            handleConvert();
+        }
     }, [selectedCurrencyFrom, selectedCurrencyTo]);
 
     const handleConvert = () => {
@@ -53,6 +56,7 @@ function currencyConverter(props) {
         setExchangeRateAmount(0);
         setExchangeRate(0)
         setReslultContaierCls('hidden');
+         setSubscribed(true)
         let unsubscribed = false;
         const controller = new AbortController();
         const signal = controller.signal;
@@ -130,7 +134,7 @@ function currencyConverter(props) {
                             <div className="div1">
                                 <label className="text-uppercase lbl-title font-weight-bold mb-10">Amount</label>
                                 <div className="flex">
-                                    <div className="row row g-0">
+                                    <div className="row g-0" >
                                         <div className="col-md-2 d-flex align-items-right">
                                             <strong className="lbl-title currency-symbol mt-auto">
                                                 {selectedCurrencySymbol}
