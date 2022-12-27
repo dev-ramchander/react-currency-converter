@@ -49,7 +49,6 @@ function currencyConverter(props) {
     }, [selectedCurrencyFrom, selectedCurrencyTo]);
 
     const handleConvert = () => {
-        return false
         setLoading(true);
         setExchangeRateAmount(0);
         setExchangeRate(0)
